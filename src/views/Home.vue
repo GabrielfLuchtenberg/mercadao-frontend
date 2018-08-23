@@ -8,7 +8,7 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import HelloWorld from '@/features/HelloWorld.vue'
 import {mapGetters} from 'vuex'
 export default {
   name: 'home',
