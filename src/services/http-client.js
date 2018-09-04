@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from '../store'
 
-const getClient = (baseUrl = null) => {
+const getClient = (baseUrl = process.env.VUE_APP_ROOT_API || null) => {
   const options = {
     'baseURL': baseUrl,
 

@@ -27,6 +27,21 @@ let router = new Router({
       path: '/login',
       name: 'login',
       component: () => import('./features/authentication/Login.vue')
+    },
+    {
+      path: '/logout',
+      name: 'logout',
+      component: ()=>import('@/features/authentication/Logout.vue')
+    },
+    {
+      path: '/register',
+      name:'register',
+      component: ()=>import('@/features/authentication/Register.vue')
+    },
+    {
+      name: 'product-detail',
+      path: '/product/:productId',
+      component: ()=>import('@/views/ProductDetail.vue')
     }
   ]
 })

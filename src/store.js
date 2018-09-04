@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import authentication from './features/authentication/store/index'
-import http from './plugins/http'
+import products from '@/features/product/store/index'
+
 Vue.use(Vuex)
-Vue.use(http)
 const modules = {
-  authentication
+  authentication, products
 }
 
 export default new Vuex.Store({

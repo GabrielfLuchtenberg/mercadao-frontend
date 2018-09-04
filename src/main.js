@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Vuelidate from 'vuelidate'
 import http from './plugins/http'
+import './assets/scss/style.scss'
 
 Vue.use(BootstrapVue)
 Vue.use(Vuelidate)

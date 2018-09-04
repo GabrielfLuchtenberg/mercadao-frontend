@@ -1,0 +1,54 @@
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+
+
+$black: #000000;
+$red: #be1e2d;
+$pink: #f6abb6;
+$blue:  #0e9aa7;
+$primary-white: #f9f4f4;
+
+
+body{
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+}
+.container{
+    max-width: 1280px;
+}
+.m-b-15{
+    margin-bottom: 15px;
+}
+
+*:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+header{
+    background: $black;
+    padding: 15px 20px 0px 20px;
+    color: $primary-white;
+	a {
+		font-weight: bold;
+        color: $primary-white;
+        padding: 0 0.7rem;
+		&.router-link-exact-active, &:hover{
+			color: $red;
+		}
+    }
+    #logo{
+        max-height: 80px;
+    }
+    form{
+        input{
+            &#input-search{
+                border-radius: 0;   
+            }
+            
+        }
+    }
+}
+footer{
+    background: $black;
+    height: 280px;
+    width: 100%;
+    color: $primary-white;
+}

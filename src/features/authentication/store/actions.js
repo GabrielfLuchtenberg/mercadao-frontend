@@ -3,8 +3,7 @@ import http from '@/services/http-client'
 export default {
     sendLogin({ commit }, { username, password }) {
         const credentials = { username, password };
-
-        http.post('http://mercadao.api/api/login', credentials)
+        http.post('login', credentials)
             .then(response => {
                 const token = response.data.access_token
                 commit('setTokenMutation', token)
@@ -12,5 +11,13 @@ export default {
             })
             .catch(e => console.log(e))
 
+    },
+    sendLogout({commit}){
+        http.post('logout')
+        .then(( ) =>{
+            commit('setTokenMutation',undefined)
+            localStorage.removeItem('access_token')
+        })
+        
     }
 }
