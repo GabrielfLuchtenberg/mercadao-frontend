@@ -6,18 +6,18 @@ export default {
     },
     data(){
         return {
-            product : {}
+            productId : {}
         }
     },
     created(){
-        this.product = this.$route.params.productId
+        this.productId = this.$route.params.productId
     }
 }
 </script>
 
 <template>
     <b-container class="m-b-15">
-        <product :product="product"></product>
+        <product :productId="productId"></product>
     </b-container>
 </template>
 

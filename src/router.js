@@ -31,17 +31,17 @@ let router = new Router({
     {
       path: '/logout',
       name: 'logout',
-      component: ()=>import('@/features/authentication/Logout.vue')
+      component: () => import('@/features/authentication/Logout.vue')
     },
     {
       path: '/register',
-      name:'register',
-      component: ()=>import('@/features/authentication/Register.vue')
+      name: 'register',
+      component: () => import('@/features/authentication/Register.vue')
     },
     {
       name: 'product-detail',
       path: '/product/:productId',
-      component: ()=>import('@/views/ProductDetail.vue')
+      component: () => import('@/views/ProductDetail.vue')
     }
   ]
 })
