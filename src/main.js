@@ -8,6 +8,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Vuelidate from 'vuelidate'
 import http from './plugins/http'
 import './assets/scss/style.scss'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCoffee, faShoppingCart, faTrashAlt, faRedoAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+
+library.add(faCoffee, faShoppingCart, faTrashAlt, faRedoAlt)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(BootstrapVue)
 Vue.use(Vuelidate)

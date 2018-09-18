@@ -1,14 +1,14 @@
 <script>
+import { mapActions } from 'vuex'
 export default {
     props:{
         product:{
             required: true,
             type: Object
         },
-        
     },
-    mounted(){
-        console.log(this.key)
+    methods:{
+        ...mapActions('cart',['addProductAction'])
     }
 }
 </script>
@@ -33,7 +33,7 @@ export default {
                 </div>
                 <div class="separator clear-left">
                     <p class="btn-add">
-                        <i class="fa fa-shopping-cart"></i><a href="http://www.jquery2dotnet.com" class="hidden-sm">Add to cart</a>
+                        <i class="fa fa-shopping-cart"></i><a href="#" @click.prevent="addProductAction({product,quantity : 1})" class="hidden-sm">Add to cart</a>
                     </p>
                     <p class="btn-details">
                         <i class="fa fa-list"></i><b-link :to="{name: 'product-detail',params:{productId : product.id}}" class="hidden-sm">More details</b-link>

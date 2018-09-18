@@ -1,4 +1,7 @@
 <script>
+import Product from '@/services/product'
+import { mapActions } from 'vuex';
+
     /* eslint-disable */
     export default{
         props:{
@@ -6,14 +9,21 @@
                 required: true
             }
         },
+        methods:{
+            ...mapActions('cart',['addProductAction']),
+            addProduct(product,quantity){
+                this.addProductAction({product,quantity})
+            }
+        },
         data(){
             return{
-                product : {}
+                product : {},
+                productQuantity: 1
             }
         },
         created(){
-            this.$http.get('products/'+this.productId)
-            .then (res => this.product = res.data)
+            Product.getDetail(this.productId)
+            .then (res => this.product = res)
         }
     }
 </script>
@@ -35,10 +45,10 @@
                     </p> <!-- price-detail-wrap .// -->
                     <dl class="item-property">
                         <dt>Description</dt>
-                        <dd><p>{{product.desc}}</p></dd>
+                        <dd><p>{{product.description}}</p></dd>
                         </dl>
                         <dl class="param param-feature">
-                        <dt>Fabricante</dt>
+                        <dt>Manufacturer</dt>
                         <dd>{{product.manufacturer}}</dd>
                     </dl>  <!-- item-property-hor .// -->
                     <hr>
@@ -47,7 +57,7 @@
                             <dl class="param param-inline">
                             <dt>Quantity: </dt>
                             <dd>
-                                <select class="form-control form-control" style="width:70px;">
+                                <select class="form-control form-control" v-model="productQuantity" style="width:70px;">
                                     <option> 1 </option>
                                     <option> 2 </option>
                                     <option> 3 </option>
@@ -57,8 +67,7 @@
                         </div> <!-- col.// -->
                     </div> <!-- row.// -->
                     <hr>
-                    <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
-                    <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+                    <b-button @click.prevent="addProduct(product,productQuantity)" class="uppercase" :size="'lg'" :variant="'outline-primary'"> <font-awesome-icon icon="shopping-cart" /> Add to cart </b-button>
                 </article> <!-- card-body.// -->
 		    </aside> <!-- col.// -->
 	    </div> <!-- row.// -->

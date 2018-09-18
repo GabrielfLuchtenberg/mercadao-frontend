@@ -1,23 +1,33 @@
 export default {
-    addProduct({ state, commit }, { product, quantity }) {
+    addProductAction({ state, commit }, { product, quantity }) {
         let stateProduct = state.cartProducts[state.cartProducts.findIndex(p => p.id === product.id)]
         if (stateProduct) {
-            commit('setQuantity', { product, quantity })
+
+            commit('setQuantity', { product, quantity: stateProduct.quantity + parseFloat(quantity) })
         } else {
             commit('addProduct', { product, quantity })
         }
     },
-    cleanCart({ commit }) {
+    cleanCartAction({ commit }) {
         commit('cleanCart')
     },
-    subProduct({ commit }, { product, quantity }) {
+    subProductAction({ commit }, { product, quantity }) {
+
         if (quantity > 0) {
             commit('setQuantity', { product, quantity })
         } else {
-            commit('removeProduct', { product })
+            commit('removeProduct', product)
         }
     },
-    removeProduct({ commit }, product) {
+    setProductQuantityAction({ commit }, { product, quantity }) {
+
+        if (quantity > 0) {
+            commit('setQuantity', { product, quantity })
+        } else {
+            commit('removeProduct', product)
+        }
+    },
+    removeProductAction({ commit }, product) {
         commit('removeProduct', product)
     }
 }

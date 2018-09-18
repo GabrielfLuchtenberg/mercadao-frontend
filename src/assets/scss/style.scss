@@ -47,8 +47,12 @@ header{
     }
 }
 footer{
+    margin-top: 45px;
     background: $black;
     height: 280px;
     width: 100%;
     color: $primary-white;
+}
+main{
+    padding-top: 15px
 }
