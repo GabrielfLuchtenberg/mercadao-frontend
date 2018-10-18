@@ -1,5 +1,7 @@
+const setCart = (products) => localStorage.setItem('cartProducts', JSON.stringify(products))
+
 export default {
-    addProductAction({ state, commit }, { product, quantity }) {
+    addProductAction ({ state, commit }, { product, quantity }) {
         let stateProduct = state.cartProducts[state.cartProducts.findIndex(p => p.id === product.id)]
         if (stateProduct) {
 
@@ -7,27 +9,32 @@ export default {
         } else {
             commit('addProduct', { product, quantity })
         }
+        setCart(state.cartProducts)
     },
-    cleanCartAction({ commit }) {
+    cleanCartAction ({ commit }) {
         commit('cleanCart')
+        localStorage.removeItem('cartProducts')
     },
-    subProductAction({ commit }, { product, quantity }) {
+    subProductAction ({ state, commit }, { product, quantity }) {
 
         if (quantity > 0) {
             commit('setQuantity', { product, quantity })
         } else {
             commit('removeProduct', product)
         }
+        setCart(state.cartProducts)
     },
-    setProductQuantityAction({ commit }, { product, quantity }) {
+    setProductQuantityAction ({ state, commit }, { product, quantity }) {
 
         if (quantity > 0) {
             commit('setQuantity', { product, quantity })
         } else {
             commit('removeProduct', product)
         }
+        setCart(state.cartProducts)
     },
-    removeProductAction({ commit }, product) {
+    removeProductAction ({ state, commit }, product) {
         commit('removeProduct', product)
+        setCart(state.cartProducts)
     }
 }

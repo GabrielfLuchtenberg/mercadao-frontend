@@ -1,23 +1,22 @@
 import http from '@/services/http-client'
 
 export default {
-    sendLogin({ commit }, { username, password }) {
+    sendLogin ({ commit }, { username, password }) {
         const credentials = { username, password };
-        http.post('login', credentials)
+        return http.post('login', credentials)
             .then(response => {
                 const token = response.data.access_token
                 commit('setTokenMutation', token)
                 localStorage.setItem('access_token', token)
+                Promise.resolve(token)
             })
-            .catch(e => console.log(e))
-
+            .catch(e => Promise.reject(e))
     },
-    sendLogout({commit}){
+    sendLogout ({ commit }) {
         http.post('logout')
-        .then(( ) =>{
-            commit('setTokenMutation',undefined)
-            localStorage.removeItem('access_token')
-        })
-        
+            .then(() => {
+                commit('setTokenMutation', undefined)
+                localStorage.removeItem('access_token')
+            })
     }
 }

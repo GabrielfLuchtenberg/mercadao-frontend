@@ -1,20 +1,21 @@
 export default {
-    cartProducts(state) {
+    cartProducts (state) {
         return state.cartProducts
     },
-    cartTotal(state) {
+    cartTotal (state) {
+
         return state.cartProducts.reduce((value, p) => {
-            return value + (p.quantity * p.price)
+            return parseFloat((value + (p.quantity * p.price)).toFixed(2))
         }, 0)
     },
-    countProduct(state) {
+    countProduct (state) {
         return state.cartProducts.reduce((value, p) => {
             return value + (p.quantity)
         }, 0)
     },
-    productWithTotalValue(state) {
+    productWithTotalValue (state) {
         return state.cartProducts.map(p => {
-            p.totalValue = p.price * p.quantity
+            p.totalValue = parseFloat((p.price * p.quantity).toFixed(2))
             return p
         })
     }

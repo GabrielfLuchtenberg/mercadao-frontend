@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-     <!-- <slider></slider> -->
+    <!-- <slider></slider> -->
 
-    <product-container></product-container>
+    <product-container :products-list="productsList"></product-container>
   </div>
 </template>
 
@@ -15,10 +15,14 @@ import productContainer from '@/features/product/Container'
 export default {
   name: 'home',
   components: {
-    HelloWorld,Slider,productContainer
+    HelloWorld, Slider, productContainer
   },
-  computed:{
-    ...mapGetters('authentication',['isAuthenticated'])
+  mounted () {
+    this.$store.dispatch('products/getProductsAction')
+  },
+  computed: {
+    ...mapGetters('authentication', ['isAuthenticated']),
+    ...mapGetters('products', ['productsList'])
   }
 }
 </script>

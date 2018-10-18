@@ -1,12 +1,12 @@
 import product from '@/services/product'
 
 export default {
-    getProductsAction({ commit }) {
+    getProductsAction ({ commit }) {
         product.getList()
-        .then(res => commit('setProducts',res))
-        .catch(e =>console.log(e))
+            .then(res => commit('setProducts', res))
+            .catch(e => console.log(e))
     },
-    setFilterAction({ commit }, filter) {
+    setFilterAction ({ commit }, filter) {
         commit('setFilterMutation', filter);
-    }
+    },
 }
