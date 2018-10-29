@@ -4,5 +4,11 @@ export default {
     },
     accessToken(state){
         return state.token
+    },
+    wasRecentlyCreated(state){
+        return state.recentlyCreated
+    },
+    user(state){
+        return state.user
     }
 }

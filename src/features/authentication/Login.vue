@@ -1,9 +1,9 @@
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { required, minLength, email } from 'vuelidate/lib/validators'
 export default {
     methods: {
-        ...mapActions('authentication', ['sendLogin']),
+        ...mapActions('authentication', ['sendLogin','recentlyCreatedAction']),
         submitLogin () {
             this.$v.$touch()
             if (this.$v.form.$invalid) {
@@ -28,6 +28,15 @@ export default {
                 username: ''
             }
             this.$v.$reset()
+        }
+    },
+    computed: {
+        ...mapGetters('authentication',['wasRecentlyCreated'])
+    },
+    mounted(){
+        console.log(this.wasRecentlyCreated)
+        if(this.wasRecentlyCreated){
+            setTimeout(this.recentlyCreatedAction(false),750)
         }
     },
     data () {
@@ -61,6 +70,10 @@ export default {
         <b-container>
             <b-row>
                 <b-col offset="6" cols="6">
+                    <b-alert :show="wasRecentlyCreated" variant="success">
+                        Successfully registered.
+                        Welcome to mercadão. :D
+                    </b-alert>
                     <b-alert :show="authFails" variant="danger">
                         E-mail or password incorrects.
                     </b-alert>

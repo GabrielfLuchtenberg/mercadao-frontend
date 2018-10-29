@@ -25,7 +25,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters('authentication', ['isAuthenticated']),
+		...mapGetters('authentication', ['isAuthenticated','user']),
 		...mapGetters('cart', ['countProduct', 'cartTotal'])
 	}
 }
@@ -62,7 +62,12 @@ export default {
 		<main>
 			<b-container>
 				<b-row>
-					<b-col offset="7" cols="5">
+					<b-col cols="2">
+						<span v-if="!!user">
+							Hello {{user.name}}
+						</span>
+					</b-col>
+					<b-col offset="5" cols="5">
 						<div id="nav" class="text-right">
 							<template v-if="!isAuthenticated">
 								<router-link to="/login">Sign in</router-link>

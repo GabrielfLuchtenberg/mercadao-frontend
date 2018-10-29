@@ -65,9 +65,16 @@ footer{
 main{
     padding-top: 60px
 }
+.error-message{
+    display:none;
+    color:$red;
+}
 .invalid{
     input{
         border: 1px solid $red;
+    }
+    .error-message{
+        display:block;
     }
 }
 #nav{
